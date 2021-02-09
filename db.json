@@ -1,0 +1,63 @@
+{
+  "Tubes": [
+    {
+      "id": 1,
+      "brand": "EHX",
+      "modelId": 1,
+      "year": 1999,
+      "value": 25,
+      "salestatus": "sold"
+    },
+    {
+      "id": 2,
+      "brand": "RCA",
+      "modelId": 2,
+      "year": 1999,
+      "value": 25,
+      "salestatus": "sold"
+    },
+    {
+      "id": 3,
+      "brand": "RCA",
+      "modelId": 2,
+      "year": 1998,
+      "value": 25,
+      "salestatus": "unsold"
+    },
+    {
+      "brand": "RCA",
+      "year": "1964",
+      "value": "18",
+      "salestatus": "sold",
+      "id": 4
+    },
+    {
+      "brand": "Brand",
+      "year": "Year",
+      "value": "Value",
+      "salestatus": "sold",
+      "id": 5
+    },
+    {
+      "brand": "Brand",
+      "year": "1951",
+      "value": "1",
+      "salestatus": "sold",
+      "id": 6
+    }
+  ],
+  "Models": [
+    {
+      "id": 1,
+      "model": "A321"
+    },
+    {
+      "id": 2,
+      "model": "B421"
+    },
+    {
+      "id": 3,
+      "model": "C421"
+    }
+  ]
+}
