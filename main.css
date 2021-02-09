@@ -42,3 +42,18 @@
     margin-left: 20px;
 }
 
+#model-Button {
+    margin-left: 20px;
+}
+
+.image {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+img {
+    height: 200px;
+    width: 400px;
+}
+

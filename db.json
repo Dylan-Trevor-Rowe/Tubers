@@ -2,7 +2,7 @@
   "Tubes": [
     {
       "id": 1,
-      "brand": "EHX",
+      "brandId": 1,
       "modelId": 1,
       "year": 1999,
       "value": 25,
@@ -10,91 +10,19 @@
     },
     {
       "id": 2,
-      "brand": "RCA",
+      "brandId": 2,
       "modelId": 2,
       "year": 1999,
       "value": 25,
       "salestatus": "sold"
     },
     {
-      "brand": "EHX",
+      "brandId": 1,
       "modelId": 3,
       "year": 1955,
       "value": 6,
       "salestatus": "sold",
       "id": 3
-    },
-    {
-      "brand": "EHX",
-      "modelId": 3,
-      "year": 1954,
-      "value": 11,
-      "salestatus": "sold",
-      "id": 4
-    },
-    {
-      "brand": "RCA",
-      "modelId": 3,
-      "year": 1955,
-      "value": 9,
-      "salestatus": "sold",
-      "id": 5
-    },
-    {
-      "brand": "RCA",
-      "modelId": 2,
-      "year": 1951,
-      "value": 1,
-      "salestatus": "sold",
-      "id": 6
-    },
-    {
-      "brand": "EHX",
-      "modelId": 2,
-      "year": 1950,
-      "value": 3,
-      "salestatus": "sold",
-      "id": 7
-    },
-    {
-      "brand": "RCA",
-      "modelId": 3,
-      "year": 1958,
-      "value": 5,
-      "salestatus": "sold",
-      "id": 8
-    },
-    {
-      "brand": "EHX",
-      "modelId": 3,
-      "year": 1954,
-      "value": 5,
-      "salestatus": "sold",
-      "id": 9
-    },
-    {
-      "brand": "RCA",
-      "modelId": 2,
-      "year": 1958,
-      "value": 9,
-      "salestatus": "sold",
-      "id": 10
-    },
-    {
-      "brand": "EHX",
-      "modelId": 1,
-      "year": 1951,
-      "value": 2,
-      "salestatus": "sold",
-      "id": 11
-    },
-    {
-      "brand": "RCA",
-      "modelId": 2,
-      "year": 1957,
-      "value": 4,
-      "salestatus": "sold",
-      "id": 12
     }
   ],
   "Models": [
@@ -109,6 +37,17 @@
     {
       "id": 3,
       "model": "C421"
+    }
+  ],
+
+  "Brand": [
+    {
+      "id": 1,
+      "brand": "EHX"
+    },
+    {
+      "id": 2,
+      "model": "RCA"
     }
   ]
 }

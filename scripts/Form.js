@@ -1,5 +1,5 @@
 import { tableList } from './Table.js'
-import { getData, getModelData, ModelData, Tubes, newTube } from './tubeprovider.js'
+import { getData, getModelData, ModelData, Tubes, newTube, newModel } from './tubeprovider.js'
 
 const target = document.getElementById('Form')
 const hub = document.getElementById('hub')
@@ -24,14 +24,19 @@ hub.addEventListener('click', e => {
 
         newTube(newTubes).then(() => {
             getData().then(() => {
-                getModelData()
-                tableList()
+                getModelData().then(() => {
+                    return tableList()
+                })
+
             })
         })
     }
+
 })
 
+
 export const tubeList = async () => {
+    target.innerHTML = ''
     getData().then(() => {
         getModelData().then(() => {
 
@@ -71,12 +76,15 @@ export const Form = (b, m) => {
     ${m.map(m => `<option value="${m.id}">${m.model}</option>`)}   
     </select>
     <div class="inputs">
-        <input class="form-control-sm" type="text" placeholder="New-Brand" aria-label="default input example">
+        <input id="brand-input" class="form-control-sm" type="text" placeholder="New-Brand" aria-label="default input example">
         <input id="brand-Button" class="btn btn-primary btn-sm" type="button" value="create new brand">
     </div>
     <div class="inputs">
-        <input class="form-control-sm" type="text" placeholder="New-Model" aria-label="default input example">
-        <input id="brand-Button" class="btn btn-primary btn-sm" type="button" value="create new model">
+        <input id="model-input" class="form-control-sm" type="text" placeholder="New-Model" aria-label="default input example">
+        <input id="model-Button" class="btn btn-primary btn-sm" type="button" value="create new model">
     </div>
-    <input id="saveInfo" class="btn btn-primary btn-sm" type="button" value="submit new entry" >`
+    <div class="inputs">
+        <input id="saveInfo" class="btn btn-primary btn-sm" type="button" value="submit new entry" >
+    </div>`
+
 }

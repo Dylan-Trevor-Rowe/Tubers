@@ -34,3 +34,18 @@ export const newTube = async (tube) => {
             getData()
         })
 }
+
+export const newModel = async (model) => {
+    const jsonNote = JSON.stringify(model)
+    return fetch('http://localhost:8080/Models', {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: jsonNote
+    })
+        .then(() => {
+            getModelData()
+        })
+}
+

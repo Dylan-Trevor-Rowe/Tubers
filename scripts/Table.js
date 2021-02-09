@@ -2,7 +2,7 @@ import { getData, Tubes, getModelData, ModelData } from './tubeprovider.js'
 
 const innerH = document.getElementById('tableBody')
 
-export const tableList = () => {
+export const tableList = async () => {
     innerH.innerHTML = ''
     getData().then(() => {
         getModelData().then(() => {

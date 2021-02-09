@@ -7,5 +7,4 @@ const init = () => {
     getData()
     tubeList()
 }
-
 init()
