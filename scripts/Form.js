@@ -1,3 +1,4 @@
+import { tableList } from './Table.js'
 import { getData, getModelData, ModelData, Tubes, newTube } from './tubeprovider.js'
 
 const target = document.getElementById('Form')
@@ -8,22 +9,23 @@ hub.addEventListener('click', e => {
     const brandValue = document.querySelector('#brandSelect').value
     const dateValue = document.querySelector('#dateSelect').value
     const dollarValue = document.querySelector('#dollarsSelect').value
-    // const modelValue = document.querySelector('#modelSelect').value
+    const modelValue = document.querySelector('#modelSelect').value
 
     if (e.target.id === 'saveInfo') {
-       
+
         const newTubes = {
             brand: brandValue,
-            // modelId:modelValue,
-            year: dateValue,
-            value: dollarValue,
+            modelId: parseInt(modelValue),
+            year: parseInt(dateValue),
+            value: parseInt(dollarValue),
             salestatus: 'sold'
-         
+
         }
 
         newTube(newTubes).then(() => {
             getData().then(() => {
                 getModelData()
+                tableList()
             })
         })
     }
@@ -32,24 +34,23 @@ hub.addEventListener('click', e => {
 export const tubeList = async () => {
     getData().then(() => {
         getModelData().then(() => {
-            
-            const models = ModelData()
-            const TubeDads = Tubes() 
 
-            const uniqueModels = models.map(m => m.model)
+            const models = ModelData()
+            const TubeDads = Tubes()
+            const uniqueModels = models.map(m => m)
             const modelSet = [...new Set(uniqueModels)]
-             const uniqueTubes = TubeDads.map(b => b.brand)
-             console.log(uniqueTubes)
+            const uniqueTubes = TubeDads.map(b => b.brand)
             let unique = [...new Set(uniqueTubes)]
             Form(unique, modelSet)
         })
     })
 }
+
 const dates = Array.from(Array(new Date().getFullYear() - 1949), (_, i) => (i + 1950))
 
 export const Form = (b, m) => {
 
-const dollars = Array.from(Array(1000), (_, x) => x);
+    const dollars = Array.from(Array(1000), (_, x) => x);
 
     target.innerHTML += `    
     
@@ -65,18 +66,17 @@ const dollars = Array.from(Array(1000), (_, x) => x);
         <option selected>Value</option>
         ${dollars.map(dinero => `<option value="${dinero}">$${dinero}</option>`)}   
     </select>
-    <select id="modalSelect" class="form-select" aria-label="Default select example">
+    <select id="modelSelect" class="form-select" aria-label="Default select example">
         <option selected>Model</option>
-    ${m.map(m => `<option value="${m}">${m}</option>`)}   
+    ${m.map(m => `<option value="${m.id}">${m.model}</option>`)}   
     </select>
     <div class="inputs">
         <input class="form-control-sm" type="text" placeholder="New-Brand" aria-label="default input example">
-        <input id="brand-Button" class="btn btn-primary btn-sm" type="button">
+        <input id="brand-Button" class="btn btn-primary btn-sm" type="button" value="create new brand">
     </div>
     <div class="inputs">
         <input class="form-control-sm" type="text" placeholder="New-Model" aria-label="default input example">
-        <input id="brand-Button" class="btn btn-primary btn-sm" type="button" >
+        <input id="brand-Button" class="btn btn-primary btn-sm" type="button" value="create new model">
     </div>
-    <input id="saveInfo" class="btn btn-primary btn-sm" type="button" >`
+    <input id="saveInfo" class="btn btn-primary btn-sm" type="button" value="submit new entry" >`
 }
-

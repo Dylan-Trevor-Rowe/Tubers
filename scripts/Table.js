@@ -3,15 +3,16 @@ import { getData, Tubes, getModelData, ModelData } from './tubeprovider.js'
 const innerH = document.getElementById('tableBody')
 
 export const tableList = () => {
+    innerH.innerHTML = ''
     getData().then(() => {
         getModelData().then(() => {
             const model = ModelData()
             const TubeDads = Tubes()
-            TubeDads.map((t) => {
-                const foundModels = model.find((m) => {
-                    return m.id === t.modelId;
+            TubeDads.map((tube) => {
+                const foundModel = model.find((model) => {
+                    return model.id === tube.modelId;
                 })
-                return tableBuilder(t, foundModels)
+                return tableBuilder(tube, foundModel)
             }
             ).join("")
         })
@@ -19,7 +20,8 @@ export const tableList = () => {
 }
 
 export const tableBuilder = (tubes, models) => {
-    innerH.innerHTML += ` 
+    console.log(models)
+    innerH.innerHTML += `
 <tr>
     <th scope="row">${tubes.id}</th>
     <td>${tubes.brand}</td>
