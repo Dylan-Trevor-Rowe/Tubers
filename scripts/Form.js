@@ -1,5 +1,5 @@
 import { tableList } from './Table.js'
-import { getData, getModelData, ModelData, Tubes, newTube, newModel } from './tubeprovider.js'
+import { getData, getModelData, ModelData, newTube, newModel, newBrand, getBrandData, BrandData } from './tubeprovider.js'
 
 const target = document.getElementById('Form')
 const hub = document.getElementById('hub')
@@ -14,10 +14,10 @@ hub.addEventListener('click', e => {
     if (e.target.id === 'saveInfo') {
 
         const newTubes = {
-            brand: brandValue,
-            modelId: parseInt(modelValue),
-            year: parseInt(dateValue),
-            value: parseInt(dollarValue),
+            brandId: parseInt(brandValue) || null,
+            modelId: parseInt(modelValue) || null,
+            year: parseInt(dateValue) || null,
+            value: parseInt(dollarValue) || null,
             salestatus: 'sold'
 
         }
@@ -25,35 +25,79 @@ hub.addEventListener('click', e => {
         newTube(newTubes).then(() => {
             getData().then(() => {
                 getModelData().then(() => {
-                    return tableList()
-                })
+                    getBrandData().then(() => {
+                        return tableList()
+                    })
 
+                })
             })
         })
     }
-
 })
 
+hub.addEventListener('click', e => {
+
+    const brandInput = document.querySelector('#brand-input').value
+
+    if (e.target.id === 'brand-Button') {
+
+        const brands = {
+            brand: brandInput || ''
+        }
+
+        newBrand(brands).then(() => {
+            getData().then(() => {
+                getModelData().then(() => {
+                    getBrandData()
+                    return tubeList()
+                })
+            })
+        })
+    }
+})
+
+hub.addEventListener('click', e => {
+
+    const modelInput = document.querySelector('#model-input').value
+
+    if (e.target.id === 'model-Button') {
+
+        const model = {
+            model: modelInput || undefined
+        }
+
+        newModel(model).then(() => {
+            getData().then(() => {
+                getModelData().then(() => {
+                    getBrandData()
+                    return tubeList()
+                })
+            })
+        })
+    }
+})
 
 export const tubeList = async () => {
     target.innerHTML = ''
     getData().then(() => {
         getModelData().then(() => {
+            getBrandData().then(() => {
 
-            const models = ModelData()
-            const TubeDads = Tubes()
-            const uniqueModels = models.map(m => m)
-            const modelSet = [...new Set(uniqueModels)]
-            const uniqueTubes = TubeDads.map(b => b.brand)
-            let unique = [...new Set(uniqueTubes)]
-            Form(unique, modelSet)
+                const models = ModelData()
+                const brands = BrandData()
+                const uniqueBrands = brands.map(b => b)
+                const uniqueModels = models.map(m => m)
+                const brandSet = [...new Set(uniqueBrands)]
+                const modelSet = [...new Set(uniqueModels)]
+                Form(modelSet, brandSet)
+            })
         })
     })
 }
 
 const dates = Array.from(Array(new Date().getFullYear() - 1949), (_, i) => (i + 1950))
 
-export const Form = (b, m) => {
+export const Form = (m, b) => {
 
     const dollars = Array.from(Array(1000), (_, x) => x);
 
@@ -61,7 +105,7 @@ export const Form = (b, m) => {
     
     <select id="brandSelect"class="form-select" aria-label="Default select example">
         <option selected>Brand</option>
-        ${b.map(brand => `<option value="${brand}">${brand}</option>`)}    
+        ${b.map(brand => `<option value="${brand.id}">${brand.brand}</option>`)}    
     </select>
     <select id="dateSelect"class="form-select" aria-label="Default select example">
         <option selected>Year</option>
@@ -86,5 +130,4 @@ export const Form = (b, m) => {
     <div class="inputs">
         <input id="saveInfo" class="btn btn-primary btn-sm" type="button" value="submit new entry" >
     </div>`
-
 }

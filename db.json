@@ -17,12 +17,28 @@
       "salestatus": "sold"
     },
     {
-      "brandId": 1,
+      "brandId": 3,
       "modelId": 3,
       "year": 1955,
       "value": 6,
       "salestatus": "sold",
       "id": 3
+    },
+    {
+      "brandId": 1,
+      "modelId": 1,
+      "year": 1962,
+      "value": 17,
+      "salestatus": "sold",
+      "id": 4
+    },
+    {
+      "brandId": null,
+      "modelId": 2,
+      "year": null,
+      "value": null,
+      "salestatus": "sold",
+      "id": 5
     }
   ],
   "Models": [
@@ -37,17 +53,24 @@
     {
       "id": 3,
       "model": "C421"
+    },
+    {
+      "model": "model",
+      "id": 4
     }
   ],
-
-  "Brand": [
+  "Brands": [
     {
       "id": 1,
       "brand": "EHX"
     },
     {
       "id": 2,
-      "model": "RCA"
+      "brand": "RCA"
+    },
+    {
+      "brand": "Telefunken",
+      "id": 3
     }
   ]
 }

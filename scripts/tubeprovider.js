@@ -1,5 +1,6 @@
 let data = [];
 let modelData = [];
+let brandData = [];
 
 export const Tubes = () => {
     return data.slice();
@@ -7,6 +8,10 @@ export const Tubes = () => {
 
 export const ModelData = () => {
     return modelData.slice();
+}
+
+export const BrandData = () => {
+    return brandData.slice();
 }
 
 export const getData = async () => {
@@ -19,6 +24,12 @@ export const getModelData = async () => {
     const response = await fetch("http://localhost:8080/Models");
     const parsedData = await response.json();
     modelData = parsedData;
+}
+
+export const getBrandData = async () => {
+    const response = await fetch("http://localhost:8080/Brands");
+    const parsedData = await response.json();
+    brandData = parsedData;
 }
 
 export const newTube = async (tube) => {
@@ -46,6 +57,20 @@ export const newModel = async (model) => {
     })
         .then(() => {
             getModelData()
+        })
+}
+
+export const newBrand = async (brand) => {
+    const jsonNote = JSON.stringify(brand)
+    return fetch('http://localhost:8080/Brands', {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: jsonNote
+    })
+        .then(() => {
+            getBrandData()
         })
 }
 
